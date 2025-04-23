@@ -95,7 +95,7 @@
 
 ---
 
-Загрузить скрипт [05-boxplot.R](scripts/05-boxplot.R)
+Загрузить скрипт [06-boxplot.R](scripts/06-boxplot.R)
 
 <script>
 $(function () {

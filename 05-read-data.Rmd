@@ -44,7 +44,7 @@ str(data)
 
 ---
 
-Загрузить скрипт [04-read-data.R](scripts/04-read-data.R)
+Загрузить скрипт [05-read-data.R](scripts/05-read-data.R)
 
 <script>
 $(function () {
