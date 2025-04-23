@@ -56,7 +56,7 @@ print(data$y) # 1  4  6 18 84
 
 # Импортируем данные ------------------------------------------------------
 
-data <- readxl::read_excel("01-practice/01-data.xlsx")
+data <- readxl::read_excel("01-data.xlsx")
 
 print(data)
 

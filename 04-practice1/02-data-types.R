@@ -1,13 +1,13 @@
 # Плохие данные 1 ---------------------------------------------------------
 
-data <- readxl::read_excel("01-practice/02-bad-data-1.xlsx")
+data <- readxl::read_excel("02-bad-data-1.xlsx")
 
 print(data)
 
 
 # Плохие данные 2 ---------------------------------------------------------
 
-data <- readxl::read_excel("01-practice/02-bad-data-2.xlsx")
+data <- readxl::read_excel("02-bad-data-2.xlsx")
 
 print(data)
 
@@ -18,7 +18,7 @@ data$analysis_date...6
 
 # Плохие данные 3 ---------------------------------------------------------
 
-data <- readxl::read_excel("01-practice/02-bad-data-3.xlsx")
+data <- readxl::read_excel("02-bad-data-3.xlsx")
 
 print(data)
 
@@ -79,7 +79,7 @@ as.Date("2025-04-18") + 30 # "2025-05-18
 
 # Нормальный Excel --------------------------------------------------------
 
-data <- readxl::read_excel("01-practice/02-good-data.xlsx")
+data <- readxl::read_excel("02-good-data.xlsx")
 
 print(data)
 

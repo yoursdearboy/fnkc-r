@@ -177,3 +177,7 @@ data$res_type
 summary(data)
 str(data)
 ```
+---
+
+Загрузить архив [04-practice1.zip](04-practice1.zip)
+
