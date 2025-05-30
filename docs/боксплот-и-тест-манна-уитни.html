@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>6 Боксплот и тест Манна-Уитни | Практика по R в ДГОИ</title>
+<meta name="description" content="6.1 Боксплот  data  данные  group  группа по оси X  numbers  значения по оси Y  lim  минимальное и максимальное значение на оси Y  можно поставить NA вместо числа и значение определится...">
+<meta name="generator" content="bookdown 0.43 with bs4_book()">
+<meta property="og:title" content="6 Боксплот и тест Манна-Уитни | Практика по R в ДГОИ">
+<meta property="og:type" content="book">
+<meta property="og:description" content="6.1 Боксплот  data  данные  group  группа по оси X  numbers  значения по оси Y  lim  минимальное и максимальное значение на оси Y  можно поставить NA вместо числа и значение определится...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="6 Боксплот и тест Манна-Уитни | Практика по R в ДГОИ">
+<meta name="twitter:description" content="6.1 Боксплот  data  данные  group  группа по оси X  numbers  значения по оси Y  lim  минимальное и максимальное значение на оси Y  можно поставить NA вместо числа и значение определится...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Практика по R в ДГОИ</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Добро пожаловать</a></li>
+<li><a class="" href="%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0.html"><span class="header-section-number">2</span> Установка</a></li>
+<li><a class="" href="%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0-%D1%81-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0%D0%BC%D0%B8-%D0%B8-%D1%84%D0%B0%D0%B9%D0%BB%D0%B0%D0%BC%D0%B8.html"><span class="header-section-number">3</span> Работа с проектами и файлами</a></li>
+<li><a class="" href="%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0-%D1%81-r.html"><span class="header-section-number">4</span> Работа с R</a></li>
+<li><a class="" href="%D1%87%D1%82%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85.html"><span class="header-section-number">5</span> Чтение данных</a></li>
+<li><a class="active" href="%D0%B1%D0%BE%D0%BA%D1%81%D0%BF%D0%BB%D0%BE%D1%82-%D0%B8-%D1%82%D0%B5%D1%81%D1%82-%D0%BC%D0%B0%D0%BD%D0%BD%D0%B0-%D1%83%D0%B8%D1%82%D0%BD%D0%B8.html"><span class="header-section-number">6</span> Боксплот и тест Манна-Уитни</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/rstudio/bookdown-demo">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="боксплот-и-тест-манна-уитни" class="section level1" number="6">
+<h1>
+<span class="header-section-number">6</span> Боксплот и тест Манна-Уитни<a class="anchor" aria-label="anchor" href="#%D0%B1%D0%BE%D0%BA%D1%81%D0%BF%D0%BB%D0%BE%D1%82-%D0%B8-%D1%82%D0%B5%D1%81%D1%82-%D0%BC%D0%B0%D0%BD%D0%BD%D0%B0-%D1%83%D0%B8%D1%82%D0%BD%D0%B8"><i class="fas fa-link"></i></a>
+</h1>
+<div id="боксплот" class="section level2" number="6.1">
+<h2>
+<span class="header-section-number">6.1</span> Боксплот<a class="anchor" aria-label="anchor" href="#%D0%B1%D0%BE%D0%BA%D1%81%D0%BF%D0%BB%D0%BE%D1%82"><i class="fas fa-link"></i></a>
+</h2>
+<dl class="fnkc-required">
+<dt>
+data
+</dt>
+<dd>
+данные
+</dd>
+<dt>
+group
+</dt>
+<dd>
+группа по оси X
+</dd>
+<dt>
+numbers
+</dt>
+<dd>
+значения по оси Y
+</dd>
+<dt>
+lim
+</dt>
+<dd>
+<p>
+минимальное и максимальное значение на оси Y
+</p>
+<p>
+можно поставить NA вместо числа и значение определится автоматически
+</p>
+</dd>
+<dt>
+breaks
+</dt>
+<dd>
+подписи на оси Y
+</dd>
+</dl>
+<dl class="fnkc-optional">
+<dt>
+labs
+</dt>
+<dd>
+подписи осей
+</dd>
+<dt>
+base_size
+</dt>
+<dd>
+размер текста
+</dd>
+<dt>
+filename
+</dt>
+<dd>
+название сохраняемого графика
+</dd>
+<dt>
+width
+</dt>
+<dd>
+ширина сохраняемого графика
+</dd>
+<dt>
+height
+</dt>
+<dd>
+высота сохраняемого графика
+</dd>
+</dl>
+<div class="sourceCode">
+<pre><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">plot_data</span> <span class="op">&lt;-</span> <span class="fnkc-required" data-toggle="fnkc-help" data-content="данные"><span class="va">data</span></span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">plot_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span> x <span class="op">=</span> <span class="fnkc-required" data-toggle="fnkc-help" data-content="группа по оси X"><span class="va">group</span></span></span>,<span> y <span class="op">=</span> <span class="fnkc-required" data-toggle="fnkc-help" data-content="значения по оси Y"><span class="va">numbers</span></span></span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span><span>lim <span class="op">=</span> <span class="fnkc-required" data-toggle="fnkc-help" data-content="минимальное и максимальное значение на оси Y"><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span></span></span>, <span>breaks <span class="op">=</span> <span class="fnkc-required" data-toggle="fnkc-help" data-content="подписи на оси Y"><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></span><span class="op">)</span></span> <span class="op">+</span></span>
+<span>  <span class="fnkc-optional" data-toggle="fnkc-help" data-content="подписи осей"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span></span>
+<span>    <span>x <span class="op">=</span> <span class="fnkc-optional" data-toggle="fnkc-help" data-content="подпись оси X"><span class="st">"Подпись оси X"</span>,</span></span></span>
+<span>    <span>y <span class="op">=</span> <span class="fnkc-optional" data-toggle="fnkc-help" data-content="подпись оси Y"><span class="st">"Подпись оси Y"</span></span></span>
+<span>  <span class="fnkc-optional" data-toggle="fnkc-help" data-content="подписи осей"><span class="op">)</span></span></span></span> <span class="op">+</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span>base_size <span class="op">=</span> <span class="fnkc-optional" data-toggle="fnkc-help" data-content="размер текста"><span class="st">13</span></span><span class="op">)</span></span></span>
+<span></span>
+<span></span><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="fnkc-optional" data-toggle="fnkc-help" data-content="название сохраняемого графика"><span class="st">"plot.png"</span></span>, <span>width <span class="op">=</span> <span class="fnkc-optional" data-toggle="fnkc-help" data-content="ширина сохраняемого графика"><span class="st">4</span></span></span>, <span>height <span class="op">=</span> <span class="fnkc-optional" data-toggle="fnkc-help" data-content="высота сохраняемого графика"><span class="st">5</span></span><span class="op">)</span></span></span>
+</code></pre>
+<button type="button" class="btn btn-copy" title aria-label="Copy to clipboard" data-toggle="popover" data-placement="top" data-trigger="hover" data-original-title="Copy to clipboard">
+<i class="bi"></i>
+</button>
+</div>
+</div>
+<div id="тест-манна-уитни" class="section level2" number="6.2">
+<h2>
+<span class="header-section-number">6.2</span> Тест Манна-Уитни<a class="anchor" aria-label="anchor" href="#%D1%82%D0%B5%D1%81%D1%82-%D0%BC%D0%B0%D0%BD%D0%BD%D0%B0-%D1%83%D0%B8%D1%82%D0%BD%D0%B8"><i class="fas fa-link"></i></a>
+</h2>
+<dl>
+<dt>
+data
+</dt>
+<dd>
+данные
+</dd>
+<dt>
+numbers
+</dt>
+<dd>
+значения
+</dd>
+<dt>
+group
+</dt>
+<dd>
+группа
+</dd>
+</dl>
+<div class="sourceCode">
+<pre><code><span><span class="fu"><a href="https://rdrr.io/r/stats/wilcox.test.html">wilcox.test</a></span><span class="op">(<span class="fnkc-required" data-toggle="fnkc-help" data-content="значения"><span class="va">numbers</span></span> <span class="op">~</span> <span class="fnkc-required" data-toggle="fnkc-help" data-content="группа"><span class="va">group</span></span>, <span class="fnkc-required" data-toggle="fnkc-help" data-content="данные"><span class="va">data</span></span><span class="op">)</span></span></span></code></pre>
+<button type="button" class="btn btn-copy" title aria-label="Copy to clipboard" data-toggle="popover" data-placement="top" data-trigger="hover" data-original-title="Copy to clipboard">
+<i class="bi"></i>
+</button>
+</div>
+</div>
+<div id="тест-манна-уитни-для-всех-пар" class="section level2" number="6.3">
+<h2>
+<span class="header-section-number">6.3</span> Тест Манна-Уитни для всех пар<a class="anchor" aria-label="anchor" href="#%D1%82%D0%B5%D1%81%D1%82-%D0%BC%D0%B0%D0%BD%D0%BD%D0%B0-%D1%83%D0%B8%D1%82%D0%BD%D0%B8-%D0%B4%D0%BB%D1%8F-%D0%B2%D1%81%D0%B5%D1%85-%D0%BF%D0%B0%D1%80"><i class="fas fa-link"></i></a>
+</h2>
+<dl>
+<dt>
+data
+</dt>
+<dd>
+данные
+</dd>
+<dt>
+numbers
+</dt>
+<dd>
+значения
+</dd>
+<dt>
+group
+</dt>
+<dd>
+группа
+</dd>
+<dt>
+p.adjust.method
+</dt>
+<dd>
+поправка
+<ul>
+<li>
+none - нет
+</li>
+<li>
+holm - Бонферрони-Холма
+</li>
+<li>
+fdr - False Discovery Rate
+</li>
+</ul>
+</dd>
+</dl>
+<div class="sourceCode">
+<pre><code><span><span class="fu"><a href="https://rdrr.io/r/stats/pairwise.wilcox.test.html">pairwise.wilcox.test</a></span><span class="op">(</span><span class="fnkc-required" data-toggle="fnkc-help" data-content="значения"><span class="va">data</span><span class="op">$</span><span class="va">numbers</span></span>, <span class="fnkc-required" data-toggle="fnkc-help" data-content="группа"><span class="va">data</span><span class="op">$</span><span class="va">group</span></span>, <span class="fnkc-required" data-toggle="fnkc-help" data-content="поправка">p.adjust.method <span class="op">=</span> <span class="st">"holm"</span></span><span class="op">)</span></span></code></pre>
+<button type="button" class="btn btn-copy" title aria-label="Copy to clipboard" data-toggle="popover" data-placement="top" data-trigger="hover" data-original-title="Copy to clipboard">
+<i class="bi"></i>
+</button>
+</div>
+<hr>
+<p>Загрузить скрипт <a href="scripts/06-boxplot.R">06-boxplot.R</a></p>
+<script>
+$(function () {
+  $('span[data-toggle="fnkc-help"]').popover({
+    trigger: "hover"
+  });
+})
+</script>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="%D1%87%D1%82%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85.html"><span class="header-section-number">5</span> Чтение данных</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%D0%B1%D0%BE%D0%BA%D1%81%D0%BF%D0%BB%D0%BE%D1%82-%D0%B8-%D1%82%D0%B5%D1%81%D1%82-%D0%BC%D0%B0%D0%BD%D0%BD%D0%B0-%D1%83%D0%B8%D1%82%D0%BD%D0%B8"><span class="header-section-number">6</span> Боксплот и тест Манна-Уитни</a></li>
+<li><a class="nav-link" href="#%D0%B1%D0%BE%D0%BA%D1%81%D0%BF%D0%BB%D0%BE%D1%82"><span class="header-section-number">6.1</span> Боксплот</a></li>
+<li><a class="nav-link" href="#%D1%82%D0%B5%D1%81%D1%82-%D0%BC%D0%B0%D0%BD%D0%BD%D0%B0-%D1%83%D0%B8%D1%82%D0%BD%D0%B8"><span class="header-section-number">6.2</span> Тест Манна-Уитни</a></li>
+<li><a class="nav-link" href="#%D1%82%D0%B5%D1%81%D1%82-%D0%BC%D0%B0%D0%BD%D0%BD%D0%B0-%D1%83%D0%B8%D1%82%D0%BD%D0%B8-%D0%B4%D0%BB%D1%8F-%D0%B2%D1%81%D0%B5%D1%85-%D0%BF%D0%B0%D1%80"><span class="header-section-number">6.3</span> Тест Манна-Уитни для всех пар</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/rstudio/bookdown-demo/blob/master/06-boxplot.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/rstudio/bookdown-demo/edit/master/06-boxplot.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Практика по R в ДГОИ</strong>" was written by . </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

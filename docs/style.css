@@ -1,0 +1,32 @@
+#main-nav .book-extra {
+  display: none;
+}
+
+#toc .book-extra {
+  display: none;
+}
+
+footer {
+  display: none;
+}
+
+dd {
+  padding-left: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+dl.fnkc-required {
+  
+}
+
+dl.fnkc-optional {
+  color: #888888;
+}
+
+span.fnkc-required {
+  border-bottom: 1px solid red;
+}
+
+span.fnkc-optional {
+  border-bottom: 1px solid green;
+}
