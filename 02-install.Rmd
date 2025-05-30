@@ -1,1 +1,127 @@
 # Установка
+
+
+## Установка R и RStudio
+
+Перейдите по ссылке:  
+[posit.co/download/rstudio-desktop](https://posit.co/download/rstudio-desktop)
+
+В середине страницы найдите раздел **"Установка R и RStudio"**  
+Нажмите **DOWNLOAD AND INSTALL R**
+
+![Установка R и RStudio](images/slide_image_1.png){height="250px" width="650px"}
+
+В открывшейся вкладке выберите из списка свою операционную систему
+
+![Установка R и RStudio](images/slide_image_3.png){height="250px" width="650px"}
+
+---
+
+### Для Windows:
+
+1. Выберите вариант **base**
+2. Загрузите и установите `.exe` файл
+
+![Windows установка](images/slide_image_4.png){height="180px" width="270px"} ![Windows установка](images/slide_image_5.png){height="180px" width="339px"}
+
+### Для Mac:
+
+- Для новых Mac: загрузите и установите `.pkg` файл (верхний вариант)
+- Для старых Mac: загрузите нижний `.pkg` файл
+
+![Mac установка](images/slide_image_6.png){height="347px" width="650px"}
+
+---
+
+## Установка RStudio
+
+1. Вернитесь или перейдите по ссылке:  
+[posit.co/download/rstudio-desktop](https://posit.co/download/rstudio-desktop)
+2. Нажмите **DOWNLOAD RSTUDIO DESKTOP**
+3. Следуйте инструкциям установщика
+
+![Установка RStudio](images/slide_image_2.png){height="250px" width="325px"}
+
+---
+
+## Запуск RStudio
+
+- Иконка **R** — запускает только консоль
+- Иконка **RStudio** — запускает интерфейс (используем её)
+
+![Интерфейс](images/slide_image_7.png){height="70px" width="200px"} ![Интерфейс](images/slide_image_8.png){height="70px" width="86px"}
+
+> Убедитесь, что установлена версия **R 4.2.x, 4.3.x, 4.4.x или 4.5.x**  
+> Если версия другая — переустановите R по инструкции выше.
+
+![Проверка версии](images/slide_image_9.png){height="400px" width="650px"}
+
+---
+
+## Запуск команд в RStudio
+
+Это — **консоль для ввода команд**.
+
+![Интерфейс](images/slide_image_10.png){height="400px" width="650px"}
+
+1. Введите текст команды  
+2. Нажмите **Enter** для запуска
+
+**Попробуйте:**
+
+```r
+summary(mtcars)
+boxplot(mtcars$mpg)
+```
+
+Должен появиться график.
+
+![Команды в RStudio](images/slide_image_11.png){height="400px" width="650px"}
+
+---
+
+## Запуск файлов в RStudio
+
+1. Скачайте и откройте файл `survival-demo.R`:  
+   Верхнее меню → **File → Open File**
+2. Выделите весь текст мышью  
+3. Нажмите **Run**
+
+Команды выполнятся в нижней консоли.
+
+![Открытие файла](images/slide_image_12.png){height="400px" width="650px"}
+![Выполнение файла](images/slide_image_13.png){height="400px" width="650px"}
+
+---
+
+## Установка пакетов
+
+> Пакеты могут устанавливаться долго — дождитесь окончания (например, до `tidyverse`)
+
+В консоли введите:
+
+```r
+install.packages("tidyverse")
+```
+
+![Установка пакетов](images/slide_image_14.png){height="114px" width="323px"}
+
+долго будут ставиться пакеты, пока не закончится на tidyverse
+
+![Установка пакетов](images/slide_image_15.png){height="60px" width="323px"}
+
+---
+
+## Демонстрация `tidyverse`
+
+1. Скачайте и откройте файл `tidyverse-demo.R`:  
+   Верхнее меню → **File → Open File**
+   
+![Открытие tidyverse-demo](images/slide_image_16.png){height="400px" width="650px"}
+   
+2. Выделите весь текст мышью  
+3. Нажмите **Run**
+
+Должен появиться **красивый график**.
+
+![Выполнение tidyverse-demo](images/slide_image_17.png){height="400px" width="650px"}
