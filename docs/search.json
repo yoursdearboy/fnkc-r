@@ -1,0 +1,256 @@
+[
+  {
+    "objectID": "04-practice1.html",
+    "href": "04-practice1.html",
+    "title": "Работа с R",
+    "section": "",
+    "text": "# Все что идет после символа # не обрабатывается.\n# Это вспомогательный текст.\n# Мы используем его для пояснений, указаний или\n# демонстрации (как сейчас).\n\n\n# Задаем данные -----------------------------------------------------------\n\nx = 12.34\ny &lt;- 56.78 # обычно используем стрелочку\n\n\n# Обрабатываем ------------------------------------------------------------\n\nx + y # 69.12\nx - y # -44.44\nx * y # 700.6652 (умножение)\nx / y # 0.21733  (деление)\nsqrt(x) # 3.512834 (квадратный корень, square root)\nlog(y, base = 10) # 1.754195 (логарифм, по основанию 10)\n\n12,34  # ошибка\nsqrt() # ошибка\n\n\n# Задаем столбец / строку -------------------------------------------------\n\nxs &lt;- c(1, 2, 3, 9, 42)\n\nsum(xs)    # 57\nmean(xs)   # 11.4\nmedian(xs) # 3\nquantile(xs, probs = 3 / 4) # 9\n\n\n# Задаем таблицу (датафрейм) ----------------------------------------------\n\ndata &lt;- data.frame(\n  x = c(1, 2, 3, 9, 42),\n  y = c(1, 4, 6, 18, 84),\n  z = c(1, 6, 9, 27, 126)\n)\n\nprint(data)\n\n#    x  y   z\n# 1  1  1   1\n# 2  2  4   6\n# 3  3  6   9\n# 4  9 18  27\n# 5 42 84 126\n\nprint(data$x) # 1  2  3  9 42\nprint(data$y) # 1  4  6 18 84\n\n\n# Импортируем данные ------------------------------------------------------\n\ndata &lt;- readxl::read_excel(\"01-practice/01-data.xlsx\")\n\nprint(data)\n\n#       x     y     z\n#   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n# 1     1     1     1\n# 2     2     4     6\n# 3     3     6     9\n# 4     9    18    27\n# 5    42    84   126\n\n\n\n# Плохие данные 1 ---------------------------------------------------------\n\ndata &lt;- readxl::read_excel(\"01-practice/02-bad-data-1.xlsx\")\n\nprint(data)\n\n\n# Плохие данные 2 ---------------------------------------------------------\n\ndata &lt;- readxl::read_excel(\"01-practice/02-bad-data-2.xlsx\")\n\nprint(data)\n\ndata$`First value`\ndata$`Исход, 0 - жив, 1 - умер`\ndata$analysis_date...6\n\n\n# Плохие данные 3 ---------------------------------------------------------\n\ndata &lt;- readxl::read_excel(\"01-practice/02-bad-data-3.xlsx\")\n\nprint(data)\n\ndata$num1\nmean(data$num1)\n\ndata$num2\nmean(data$num2) # NA\n\n\n# Число (numeric) ---------------------------------------------------------\n\n1      # 1\n1.23   # 1.23\n1 / 3  # 0.3333333\n-1.23  # -1.23\n\n\n# Логическое (logical) ----------------------------------------------------\n\n# 1 и 0 не являются логическими значениями - это числа\n\nTRUE\nFALSE\n\n\n# Строка (character) ------------------------------------------------------\n\n\"Это текст в двойных кавычках\"\n'Или в одинарных'\n\"Частичный ответ после МРТ на 01.02.2003 по месту жительства\"\nc(\"ЧО\", \"ПО\")\n\n\n# Категория (factor) ------------------------------------------------------\n\nfactor(\n  c(\"ЧО\", \"ПО\", \"Частичный ответ\"),\n  levels = c(\"СЗ\", \"ЧО\", \"ПО\")\n)\n\n# ЧО   ПО   &lt;NA&gt;\n# Levels: СЗ ЧО ПО\n\n\n# Not Available (неизвестные значения) ------------------------------------\n\nNA\nNA + 1           # NA\n(NA + 1 + 1) / 3 # NA\n\n\n# Дата --------------------------------------------------------------------\n\nas.Date(\"2025-04-18\")      # \"2025-04-18\"\nas.Date(\"2025-04-18\") + 30 # \"2025-05-18\n\n\n# Нормальный Excel --------------------------------------------------------\n\ndata &lt;- readxl::read_excel(\"01-practice/02-good-data.xlsx\")\n\nprint(data)\n\nmean(data$num1) # 2.243333\nmean(data$num2) # NA\nmean(data$num3) # 1.936667\n\ndata$res_type\n\ndata$res_type &lt;- factor(data$res_type, c(\"СЗ\", \"ЧО\", \"ПО\"))\ndata$res_type\n\n\n# summary -----------------------------------------------------------------\n\nsummary(data)\nstr(data)\n\nЗагрузить архив 04-practice1.zip",
+    "crumbs": [
+      "Базовый R"
+    ]
+  },
+  {
+    "objectID": "04-practice1.html#обработка-данных",
+    "href": "04-practice1.html#обработка-данных",
+    "title": "Работа с R",
+    "section": "",
+    "text": "# Все что идет после символа # не обрабатывается.\n# Это вспомогательный текст.\n# Мы используем его для пояснений, указаний или\n# демонстрации (как сейчас).\n\n\n# Задаем данные -----------------------------------------------------------\n\nx = 12.34\ny &lt;- 56.78 # обычно используем стрелочку\n\n\n# Обрабатываем ------------------------------------------------------------\n\nx + y # 69.12\nx - y # -44.44\nx * y # 700.6652 (умножение)\nx / y # 0.21733  (деление)\nsqrt(x) # 3.512834 (квадратный корень, square root)\nlog(y, base = 10) # 1.754195 (логарифм, по основанию 10)\n\n12,34  # ошибка\nsqrt() # ошибка\n\n\n# Задаем столбец / строку -------------------------------------------------\n\nxs &lt;- c(1, 2, 3, 9, 42)\n\nsum(xs)    # 57\nmean(xs)   # 11.4\nmedian(xs) # 3\nquantile(xs, probs = 3 / 4) # 9\n\n\n# Задаем таблицу (датафрейм) ----------------------------------------------\n\ndata &lt;- data.frame(\n  x = c(1, 2, 3, 9, 42),\n  y = c(1, 4, 6, 18, 84),\n  z = c(1, 6, 9, 27, 126)\n)\n\nprint(data)\n\n#    x  y   z\n# 1  1  1   1\n# 2  2  4   6\n# 3  3  6   9\n# 4  9 18  27\n# 5 42 84 126\n\nprint(data$x) # 1  2  3  9 42\nprint(data$y) # 1  4  6 18 84\n\n\n# Импортируем данные ------------------------------------------------------\n\ndata &lt;- readxl::read_excel(\"01-practice/01-data.xlsx\")\n\nprint(data)\n\n#       x     y     z\n#   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n# 1     1     1     1\n# 2     2     4     6\n# 3     3     6     9\n# 4     9    18    27\n# 5    42    84   126",
+    "crumbs": [
+      "Базовый R"
+    ]
+  },
+  {
+    "objectID": "04-practice1.html#типы-данных",
+    "href": "04-practice1.html#типы-данных",
+    "title": "Работа с R",
+    "section": "",
+    "text": "# Плохие данные 1 ---------------------------------------------------------\n\ndata &lt;- readxl::read_excel(\"01-practice/02-bad-data-1.xlsx\")\n\nprint(data)\n\n\n# Плохие данные 2 ---------------------------------------------------------\n\ndata &lt;- readxl::read_excel(\"01-practice/02-bad-data-2.xlsx\")\n\nprint(data)\n\ndata$`First value`\ndata$`Исход, 0 - жив, 1 - умер`\ndata$analysis_date...6\n\n\n# Плохие данные 3 ---------------------------------------------------------\n\ndata &lt;- readxl::read_excel(\"01-practice/02-bad-data-3.xlsx\")\n\nprint(data)\n\ndata$num1\nmean(data$num1)\n\ndata$num2\nmean(data$num2) # NA\n\n\n# Число (numeric) ---------------------------------------------------------\n\n1      # 1\n1.23   # 1.23\n1 / 3  # 0.3333333\n-1.23  # -1.23\n\n\n# Логическое (logical) ----------------------------------------------------\n\n# 1 и 0 не являются логическими значениями - это числа\n\nTRUE\nFALSE\n\n\n# Строка (character) ------------------------------------------------------\n\n\"Это текст в двойных кавычках\"\n'Или в одинарных'\n\"Частичный ответ после МРТ на 01.02.2003 по месту жительства\"\nc(\"ЧО\", \"ПО\")\n\n\n# Категория (factor) ------------------------------------------------------\n\nfactor(\n  c(\"ЧО\", \"ПО\", \"Частичный ответ\"),\n  levels = c(\"СЗ\", \"ЧО\", \"ПО\")\n)\n\n# ЧО   ПО   &lt;NA&gt;\n# Levels: СЗ ЧО ПО\n\n\n# Not Available (неизвестные значения) ------------------------------------\n\nNA\nNA + 1           # NA\n(NA + 1 + 1) / 3 # NA\n\n\n# Дата --------------------------------------------------------------------\n\nas.Date(\"2025-04-18\")      # \"2025-04-18\"\nas.Date(\"2025-04-18\") + 30 # \"2025-05-18\n\n\n# Нормальный Excel --------------------------------------------------------\n\ndata &lt;- readxl::read_excel(\"01-practice/02-good-data.xlsx\")\n\nprint(data)\n\nmean(data$num1) # 2.243333\nmean(data$num2) # NA\nmean(data$num3) # 1.936667\n\ndata$res_type\n\ndata$res_type &lt;- factor(data$res_type, c(\"СЗ\", \"ЧО\", \"ПО\"))\ndata$res_type\n\n\n# summary -----------------------------------------------------------------\n\nsummary(data)\nstr(data)\n\nЗагрузить архив 04-practice1.zip",
+    "crumbs": [
+      "Базовый R"
+    ]
+  },
+  {
+    "objectID": "06-boxplot.html",
+    "href": "06-boxplot.html",
+    "title": "Боксплот и тест Манна-Уитни",
+    "section": "",
+    "text": "data\n\n\nданные\n\n\ngroup\n\n\nгруппа по оси X\n\n\nnumbers\n\n\nзначения по оси Y\n\n\nlim\n\n\n\nминимальное и максимальное значение на оси Y\n\n\nможно поставить NA вместо числа и значение определится автоматически\n\n\n\nbreaks\n\n\nподписи на оси Y\n\n\n\n\nlabs\n\n\nподписи осей\n\n\nbase_size\n\n\nразмер текста\n\n\nfilename\n\n\nназвание сохраняемого графика\n\n\nwidth\n\n\nширина сохраняемого графика\n\n\nheight\n\n\nвысота сохраняемого графика\n\n\n\nlibrary(tidyverse)\n\nplot_data &lt;- data\n\nggplot(plot_data, aes( x = group, y = numbers)) +\n  geom_boxplot() +\n  scale_y_continuous(lim = c(-3, 3), breaks = c(-3, -2, -1, 0, 1, 2, 3)) +\n  labs(\n    x = \"Подпись оси X\",\n    y = \"Подпись оси Y\"\n  ) +\n  theme_classic(base_size = 13)\n\nggsave(\"plot.png\", width = 4, height = 5)\n\n\n\n\n\n\n\n\n\n\ndata\n\n\nданные\n\n\nnumbers\n\n\nзначения\n\n\ngroup\n\n\nгруппа\n\n\n\nwilcox.test(numbers ~ group, data)\n\n\n\n\n\n\n\n\n\ndata\n\n\nданные\n\n\nnumbers\n\n\nзначения\n\n\ngroup\n\n\nгруппа\n\n\np.adjust.method\n\n\nпоправка\n\n\nnone - нет\n\n\nholm - Бонферрони-Холма\n\n\nfdr - False Discovery Rate\n\n\n\n\n\npairwise.wilcox.test(data$numbers, data$group, p.adjust.method = \"holm\")\n\n\n\n\n\nЗагрузить скрипт 06-boxplot.R",
+    "crumbs": [
+      "Боксплоты"
+    ]
+  },
+  {
+    "objectID": "06-boxplot.html#боксплот",
+    "href": "06-boxplot.html#боксплот",
+    "title": "Боксплот и тест Манна-Уитни",
+    "section": "",
+    "text": "data\n\n\nданные\n\n\ngroup\n\n\nгруппа по оси X\n\n\nnumbers\n\n\nзначения по оси Y\n\n\nlim\n\n\n\nминимальное и максимальное значение на оси Y\n\n\nможно поставить NA вместо числа и значение определится автоматически\n\n\n\nbreaks\n\n\nподписи на оси Y\n\n\n\n\nlabs\n\n\nподписи осей\n\n\nbase_size\n\n\nразмер текста\n\n\nfilename\n\n\nназвание сохраняемого графика\n\n\nwidth\n\n\nширина сохраняемого графика\n\n\nheight\n\n\nвысота сохраняемого графика\n\n\n\nlibrary(tidyverse)\n\nplot_data &lt;- data\n\nggplot(plot_data, aes( x = group, y = numbers)) +\n  geom_boxplot() +\n  scale_y_continuous(lim = c(-3, 3), breaks = c(-3, -2, -1, 0, 1, 2, 3)) +\n  labs(\n    x = \"Подпись оси X\",\n    y = \"Подпись оси Y\"\n  ) +\n  theme_classic(base_size = 13)\n\nggsave(\"plot.png\", width = 4, height = 5)",
+    "crumbs": [
+      "Боксплоты"
+    ]
+  },
+  {
+    "objectID": "06-boxplot.html#тест-манна-уитни",
+    "href": "06-boxplot.html#тест-манна-уитни",
+    "title": "Боксплот и тест Манна-Уитни",
+    "section": "",
+    "text": "data\n\n\nданные\n\n\nnumbers\n\n\nзначения\n\n\ngroup\n\n\nгруппа\n\n\n\nwilcox.test(numbers ~ group, data)",
+    "crumbs": [
+      "Боксплоты"
+    ]
+  },
+  {
+    "objectID": "06-boxplot.html#тест-манна-уитни-для-всех-пар",
+    "href": "06-boxplot.html#тест-манна-уитни-для-всех-пар",
+    "title": "Боксплот и тест Манна-Уитни",
+    "section": "",
+    "text": "data\n\n\nданные\n\n\nnumbers\n\n\nзначения\n\n\ngroup\n\n\nгруппа\n\n\np.adjust.method\n\n\nпоправка\n\n\nnone - нет\n\n\nholm - Бонферрони-Холма\n\n\nfdr - False Discovery Rate\n\n\n\n\n\npairwise.wilcox.test(data$numbers, data$group, p.adjust.method = \"holm\")\n\n\n\n\n\nЗагрузить скрипт 06-boxplot.R",
+    "crumbs": [
+      "Боксплоты"
+    ]
+  },
+  {
+    "objectID": "DEV.html",
+    "href": "DEV.html",
+    "title": "R",
+    "section": "",
+    "text": "RStudio Education - ссылки на материалы\nrstudio-education - GitHub страница RStudio Education\nA ModernDive into R and the Tidyverse - дефолт\nR-Ladies Sydney - норм воркшоп\nSTAT 545. Data wrangling, exploration, and analysis with R - курс Jenny Bryan, она оч крутая\ndsbox - максимально интерактивный курс, норм слайды\nPosit Recipes. Some tasty R code snippets - готовые скрипты"
+  },
+  {
+    "objectID": "DEV.html#ссылки",
+    "href": "DEV.html#ссылки",
+    "title": "R",
+    "section": "",
+    "text": "RStudio Education - ссылки на материалы\nrstudio-education - GitHub страница RStudio Education\nA ModernDive into R and the Tidyverse - дефолт\nR-Ladies Sydney - норм воркшоп\nSTAT 545. Data wrangling, exploration, and analysis with R - курс Jenny Bryan, она оч крутая\ndsbox - максимально интерактивный курс, норм слайды\nPosit Recipes. Some tasty R code snippets - готовые скрипты"
+  },
+  {
+    "objectID": "05-read-data.html",
+    "href": "05-read-data.html",
+    "title": "Чтение данных",
+    "section": "",
+    "text": "Во всех примерах ниже в качестве названия используется data\n\n\n\n\npath\n\n\nПуть до файла\n\n\nsheet\n\n\nлист\n\n\nrange\n\n\nдиапазон ячеек на листе (верхняя левая : нижняя правая)\n\n\n\ndata &lt;- readxl::read_excel(\n  path = \"data.xlsx\",\n  sheet = \"Лист 1\",\n  range = \"A1:F30\"\n)\n\n\n\n\n\n\n\nОпределяет список и порядок допустимых значений.\n\n\ncolumn1\n\n\nназвание столбца\n\n\nlevels\n\n\nсписок значений\n\n\n\ndata$column1 &lt;- factor(data$column1, levels = c(\"Вариант 1\", \"Вариант 2\", \"Вариант 3\"))\n\n\n\n\n\n\n\nsummary(data)\nstr(data)\n\nЗагрузить скрипт 05-read-data.R",
+    "crumbs": [
+      "Чтение данных"
+    ]
+  },
+  {
+    "objectID": "05-read-data.html#импорт-excel-файла",
+    "href": "05-read-data.html#импорт-excel-файла",
+    "title": "Чтение данных",
+    "section": "",
+    "text": "path\n\n\nПуть до файла\n\n\nsheet\n\n\nлист\n\n\nrange\n\n\nдиапазон ячеек на листе (верхняя левая : нижняя правая)\n\n\n\ndata &lt;- readxl::read_excel(\n  path = \"data.xlsx\",\n  sheet = \"Лист 1\",\n  range = \"A1:F30\"\n)",
+    "crumbs": [
+      "Чтение данных"
+    ]
+  },
+  {
+    "objectID": "05-read-data.html#кодирование-значений-столбца-фактор",
+    "href": "05-read-data.html#кодирование-значений-столбца-фактор",
+    "title": "Чтение данных",
+    "section": "",
+    "text": "Определяет список и порядок допустимых значений.\n\n\ncolumn1\n\n\nназвание столбца\n\n\nlevels\n\n\nсписок значений\n\n\n\ndata$column1 &lt;- factor(data$column1, levels = c(\"Вариант 1\", \"Вариант 2\", \"Вариант 3\"))",
+    "crumbs": [
+      "Чтение данных"
+    ]
+  },
+  {
+    "objectID": "05-read-data.html#проверка",
+    "href": "05-read-data.html#проверка",
+    "title": "Чтение данных",
+    "section": "",
+    "text": "summary(data)\nstr(data)\n\nЗагрузить скрипт 05-read-data.R",
+    "crumbs": [
+      "Чтение данных"
+    ]
+  },
+  {
+    "objectID": "03-create-project.html",
+    "href": "03-create-project.html",
+    "title": "Работа с проектами и файлами",
+    "section": "",
+    "text": "Проект - это папка на компьютере, в которой запускается R. В ней должны находиться файлы с данными, скрипты для расчетов и результаты (графики и таблицы).\n\n\nДля создания нового проекта в верхнем левом меню выберите File → New Project.\n\nВ появившемся окне выберите New Directory. На следующем шаге New Project.\n \nВведите название проекта (так же будет называться папка на компьютере). Также можно указать где эта папка будет создана (кнопка Browse).\n\nПосле этого кликаем на кнопку Create Project внизу. Проект будет создан и загружен. В окне обзора будут видны файлы этого проекта.\n\n\n\n\nТеперь, если зайти в папку с проектом через проводник, можно найти файл проекта (на примере это New_example.Rpoj). Если дважды кликнуть по этому файлу, у вас откроется окно Rstudio с этим проектом.\n\n\n\n\nДля создания нового файла выбираем меню File -&gt; New file -&gt; R script. После этого открывается новый пустой файл.\n\nЧтобы сохранить файл нажмите кнопку сохранения вверху окна. В появившемся диалоговом окне введите название файла и нажмите Save.\n \nТеперь наш файл виден в окне просмотра Rstudio, при следующем сохранении менять имя файла не потребуется.",
+    "crumbs": [
+      "Проекты"
+    ]
+  },
+  {
+    "objectID": "03-create-project.html#создание-проекта",
+    "href": "03-create-project.html#создание-проекта",
+    "title": "Работа с проектами и файлами",
+    "section": "",
+    "text": "Для создания нового проекта в верхнем левом меню выберите File → New Project.\n\nВ появившемся окне выберите New Directory. На следующем шаге New Project.\n \nВведите название проекта (так же будет называться папка на компьютере). Также можно указать где эта папка будет создана (кнопка Browse).\n\nПосле этого кликаем на кнопку Create Project внизу. Проект будет создан и загружен. В окне обзора будут видны файлы этого проекта.",
+    "crumbs": [
+      "Проекты"
+    ]
+  },
+  {
+    "objectID": "03-create-project.html#открытие-проекта",
+    "href": "03-create-project.html#открытие-проекта",
+    "title": "Работа с проектами и файлами",
+    "section": "",
+    "text": "Теперь, если зайти в папку с проектом через проводник, можно найти файл проекта (на примере это New_example.Rpoj). Если дважды кликнуть по этому файлу, у вас откроется окно Rstudio с этим проектом.",
+    "crumbs": [
+      "Проекты"
+    ]
+  },
+  {
+    "objectID": "03-create-project.html#создание-и-сохранение-файла",
+    "href": "03-create-project.html#создание-и-сохранение-файла",
+    "title": "Работа с проектами и файлами",
+    "section": "",
+    "text": "Для создания нового файла выбираем меню File -&gt; New file -&gt; R script. После этого открывается новый пустой файл.\n\nЧтобы сохранить файл нажмите кнопку сохранения вверху окна. В появившемся диалоговом окне введите название файла и нажмите Save.\n \nТеперь наш файл виден в окне просмотра Rstudio, при следующем сохранении менять имя файла не потребуется.",
+    "crumbs": [
+      "Проекты"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Практика по R в ДГОИ",
+    "section": "",
+    "text": "Добро пожаловать\nВыберите раздел в меню слева.\nПодразделы в меню справа.",
+    "crumbs": [
+      "Введение"
+    ]
+  },
+  {
+    "objectID": "02-install.html",
+    "href": "02-install.html",
+    "title": "Установка",
+    "section": "",
+    "text": "Перейдите по ссылке:\nposit.co/download/rstudio-desktop\nВ середине страницы найдите раздел “Установка R и RStudio”\nНажмите DOWNLOAD AND INSTALL R\n\n\n\nУстановка R и RStudio\n\n\nВ открывшейся вкладке выберите из списка свою операционную систему\n\n\n\nУстановка R и RStudio\n\n\n\n\n\n\nВыберите вариант base\nЗагрузите и установите .exe файл\n\n \n\n\n\n\nДля новых Mac: загрузите и установите .pkg файл (верхний вариант)\nДля старых Mac: загрузите нижний .pkg файл\n\n\n\n\nMac установка\n\n\n\n\n\n\n\n\nВернитесь или перейдите по ссылке:\nposit.co/download/rstudio-desktop\nНажмите DOWNLOAD RSTUDIO DESKTOP\nСледуйте инструкциям установщика\n\n\n\n\nУстановка RStudio\n\n\n\n\n\n\n\nИконка R — запускает только консоль\nИконка RStudio — запускает интерфейс (используем её)\n\n \n\nУбедитесь, что установлена версия R 4.2.x, 4.3.x, 4.4.x или 4.5.x\nЕсли версия другая — переустановите R по инструкции выше.\n\n\n\n\nПроверка версии\n\n\n\n\n\n\nЭто — консоль для ввода команд.\n\n\n\nИнтерфейс\n\n\n\nВведите текст команды\n\nНажмите Enter для запуска\n\nПопробуйте:\nsummary(mtcars)\nboxplot(mtcars$mpg)\nДолжен появиться график.\n\n\n\nКоманды в RStudio\n\n\n\n\n\n\n\nСкачайте и откройте файл survival-demo.R:\nВерхнее меню → File → Open File\nВыделите весь текст мышью\n\nНажмите Run\n\nКоманды выполнятся в нижней консоли.\n \n\n\n\n\n\nПакеты могут устанавливаться долго — дождитесь окончания (например, до tidyverse)\n\nВ консоли введите:\ninstall.packages(\"tidyverse\")\n\n\n\nУстановка пакетов\n\n\nдолго будут ставиться пакеты, пока не закончится на tidyverse\n\n\n\nУстановка пакетов\n\n\n\n\n\n\n\nСкачайте и откройте файл tidyverse-demo.R:\nВерхнее меню → File → Open File\n\n\n\n\nОткрытие tidyverse-demo\n\n\n\nВыделите весь текст мышью\n\nНажмите Run\n\nДолжен появиться красивый график.\n\n\n\nВыполнение tidyverse-demo",
+    "crumbs": [
+      "Установка"
+    ]
+  },
+  {
+    "objectID": "02-install.html#установка-r-и-rstudio",
+    "href": "02-install.html#установка-r-и-rstudio",
+    "title": "Установка",
+    "section": "",
+    "text": "Перейдите по ссылке:\nposit.co/download/rstudio-desktop\nВ середине страницы найдите раздел “Установка R и RStudio”\nНажмите DOWNLOAD AND INSTALL R\n\n\n\nУстановка R и RStudio\n\n\nВ открывшейся вкладке выберите из списка свою операционную систему\n\n\n\nУстановка R и RStudio\n\n\n\n\n\n\nВыберите вариант base\nЗагрузите и установите .exe файл\n\n \n\n\n\n\nДля новых Mac: загрузите и установите .pkg файл (верхний вариант)\nДля старых Mac: загрузите нижний .pkg файл\n\n\n\n\nMac установка",
+    "crumbs": [
+      "Установка"
+    ]
+  },
+  {
+    "objectID": "02-install.html#установка-rstudio",
+    "href": "02-install.html#установка-rstudio",
+    "title": "Установка",
+    "section": "",
+    "text": "Вернитесь или перейдите по ссылке:\nposit.co/download/rstudio-desktop\nНажмите DOWNLOAD RSTUDIO DESKTOP\nСледуйте инструкциям установщика\n\n\n\n\nУстановка RStudio",
+    "crumbs": [
+      "Установка"
+    ]
+  },
+  {
+    "objectID": "02-install.html#запуск-rstudio",
+    "href": "02-install.html#запуск-rstudio",
+    "title": "Установка",
+    "section": "",
+    "text": "Иконка R — запускает только консоль\nИконка RStudio — запускает интерфейс (используем её)\n\n \n\nУбедитесь, что установлена версия R 4.2.x, 4.3.x, 4.4.x или 4.5.x\nЕсли версия другая — переустановите R по инструкции выше.\n\n\n\n\nПроверка версии",
+    "crumbs": [
+      "Установка"
+    ]
+  },
+  {
+    "objectID": "02-install.html#запуск-команд-в-rstudio",
+    "href": "02-install.html#запуск-команд-в-rstudio",
+    "title": "Установка",
+    "section": "",
+    "text": "Это — консоль для ввода команд.\n\n\n\nИнтерфейс\n\n\n\nВведите текст команды\n\nНажмите Enter для запуска\n\nПопробуйте:\nsummary(mtcars)\nboxplot(mtcars$mpg)\nДолжен появиться график.\n\n\n\nКоманды в RStudio",
+    "crumbs": [
+      "Установка"
+    ]
+  },
+  {
+    "objectID": "02-install.html#запуск-файлов-в-rstudio",
+    "href": "02-install.html#запуск-файлов-в-rstudio",
+    "title": "Установка",
+    "section": "",
+    "text": "Скачайте и откройте файл survival-demo.R:\nВерхнее меню → File → Open File\nВыделите весь текст мышью\n\nНажмите Run\n\nКоманды выполнятся в нижней консоли.",
+    "crumbs": [
+      "Установка"
+    ]
+  },
+  {
+    "objectID": "02-install.html#установка-пакетов",
+    "href": "02-install.html#установка-пакетов",
+    "title": "Установка",
+    "section": "",
+    "text": "Пакеты могут устанавливаться долго — дождитесь окончания (например, до tidyverse)\n\nВ консоли введите:\ninstall.packages(\"tidyverse\")\n\n\n\nУстановка пакетов\n\n\nдолго будут ставиться пакеты, пока не закончится на tidyverse\n\n\n\nУстановка пакетов",
+    "crumbs": [
+      "Установка"
+    ]
+  },
+  {
+    "objectID": "02-install.html#демонстрация-tidyverse",
+    "href": "02-install.html#демонстрация-tidyverse",
+    "title": "Установка",
+    "section": "",
+    "text": "Скачайте и откройте файл tidyverse-demo.R:\nВерхнее меню → File → Open File\n\n\n\n\nОткрытие tidyverse-demo\n\n\n\nВыделите весь текст мышью\n\nНажмите Run\n\nДолжен появиться красивый график.\n\n\n\nВыполнение tidyverse-demo",
+    "crumbs": [
+      "Установка"
+    ]
+  }
+]

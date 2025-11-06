@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: docs
 
 website:
   title: "Практика по R в ДГОИ"
@@ -7,8 +8,18 @@ website:
     style: "docked"
     search: true
     contents:
-      - text: "Index"
+      - text: "Введение"
         href: index.qmd
+      - text: "Установка"
+        href: 02-install.Rmd
+      - text: "Проекты"
+        href: 03-create-project.Rmd
+      - text: "Базовый R"
+        href: 04-practice1.Rmd
+      - text: "Чтение данных"
+        href: 05-read-data.Rmd
+      - text: "Боксплоты"
+        href: 06-boxplot.Rmd
 
 format:
   html:
